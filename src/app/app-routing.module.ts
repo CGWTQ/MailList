@@ -1,6 +1,7 @@
 import { NgModule, ViewChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule,Routes} from '@angular/router'
+import { AuthGuard } from './auth.guard.service'
 
 import { SingninComponent } from './singnin/singnin.component'
 import { SingnupComponent } from './singnup/singnup.component'
@@ -16,11 +17,12 @@ import { TagEditComponent } from './tag-edit/tag-edit.component'
 const routes:Routes=[
   {
     path:"signin",
-    component:SingninComponent
+    component:SingninComponent,
   },
   {
     path:"contact",
     component:LayoutComponent,
+    canActivate:[AuthGuard],  //路由守卫
     children:[
       {
         path:"",
@@ -39,6 +41,7 @@ const routes:Routes=[
   {
     path:"tags",
     component:LayoutComponent,
+    canActivate:[AuthGuard],
     children:[
       {
         path:"",
@@ -60,7 +63,7 @@ const routes:Routes=[
   },
   {
     path:'',
-    redirectTo:'/contact',  //跳转到该路径
+    redirectTo:'/signin',  //跳转到该路径
     pathMatch:"full"
   }
 ]
@@ -70,6 +73,7 @@ const routes:Routes=[
   imports: [
     RouterModule.forRoot(routes)
   ],
-  exports:[ RouterModule ]
+  exports:[ RouterModule ],
+  providers:[AuthGuard],  //路由守卫设置
 })
 export class AppRoutingModule { }
