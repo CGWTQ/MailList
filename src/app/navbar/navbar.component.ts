@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit {
     this.http.delete('http://localhost:3000/session')
     .toPromise()
     .then( data => {
+      window.localStorage.removeItem("user_info");
       window.localStorage.removeItem("auth_token");   //清除本地记录
       this.router.navigate(["/signin"])
     } )
