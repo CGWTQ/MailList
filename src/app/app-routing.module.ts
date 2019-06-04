@@ -33,13 +33,13 @@ const routes:Routes=[
         component:ContactNewComponent
       },
       {
-        path:"edit",
+        path:"edit/:id",
         component:ContactEditComponent
       }    
     ]
   },
   {
-    path:"tags",
+    path:"tag-list",
     component:LayoutComponent,
     canActivate:[AuthGuard],
     children:[

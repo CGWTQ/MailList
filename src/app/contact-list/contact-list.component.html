@@ -33,8 +33,8 @@
           <td>{{ item.phone }}</td>
           <td><span class="label label-info">朋友</span></td>
           <td>
-            <a href="edit.html">编辑</a>
-            <a href="#">删除</a>
+            <a [routerLink]="['/contact/edit',item.id]">编辑</a>
+            <a href="javascript:;" (click)="delete(item.id)">删除</a>
           </td>
         </tr>
       </tbody>
